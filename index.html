@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DwellSync - Smart Apartment Community</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="loginPage" class="page-section login-page">
+
+        <div class="login-container">
+
+            <div class="login-card">
+
+                <div class="logo-section">
+
+                    <div class="logo">
+                        DS
+                    </div>
+
+                    <h1>DwellSync</h1>
+
+                    <p>
+                        Smart Apartment Community Management
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                        <small id="emailError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <small id="passwordError"></small>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+
+                <div class="demo-info">
+
+                    <h3>
+                        Admin Demo Login
+                    </h3>
+
+                    <p>
+                        Email:
+                        <strong>
+                            admin@dwellsync.local
+                        </strong>
+                    </p>
+
+                    <p>
+                        Password:
+                        <strong>
+                            admin123
+                        </strong>
+                    </p>
+
+                </div>
+
+
+                <p class="login-note">
+
+                    Resident accounts are created by
+                    the apartment administrator.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         RESIDENT DASHBOARD
+    ========================================== -->
+
+    <section
+        id="dashboardPage"
+        class="page-section"
+        style="display: none;"
+    >
+
+        <!-- Navigation -->
+
+        <header class="navbar">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    DS
+                </div>
+
+                <div>
+
+                    <h2>
+                        DwellSync
+                    </h2>
+
+                    <span>
+                        Smart Community
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    href="#"
+                    id="dashboardNav"
+                    class="active"
+                    onclick="showDashboard(); return false;"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="#"
+                    id="profileNav"
+                    onclick="showProfile(); return false;"
+                >
+                    My Profile
+                </a>
+
+                <a
+                    href="#"
+                    onclick="logoutUser(); return false;"
+                >
+                    Logout
+                </a>
+
+            </nav>
+
+        </header>
+
+
+
+        <!-- Dashboard Content -->
+
+        <main class="dashboard-container">
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <p class="section-label">
+                        RESIDENT DASHBOARD
+                    </p>
+
+                    <h1>
+                        Welcome,
+                        <span id="welcomeName">
+                            Resident
+                        </span>!
+                    </h1>
+
+                    <p>
+                        Manage your apartment information
+                        and community activities.
+                    </p>
+
+                </div>
+
+
+                <div class="flat-badge">
+
+                    <span>
+                        Apartment
+                    </span>
+
+                    <strong id="flatNumber">
+                        A-101
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Statistics -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Open Complaints
+                        </p>
+
+                        <h2 id="openComplaints">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Pending Complaints
+                        </p>
+
+                        <h2 id="pendingComplaints">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Completed
+                        </p>
+
+                        <h2 id="completedComplaints">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📢
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Announcements
+                        </p>
+
+                        <h2 id="announcementCount">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Dashboard Cards -->
+
+            <section class="content-grid">
+
+                <!-- Personal Information -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="section-label">
+                                ACCOUNT
+                            </p>
+
+                            <h2>
+                                My Information
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="small-button"
+                            onclick="showProfile()"
+                        >
+                            Edit Profile
+                        </button>
+
+                    </div>
+
+
+                    <div class="profile-preview">
+
+                        <div
+                            class="profile-avatar"
+                            id="profileAvatar"
+                        >
+                            R
+                        </div>
+
+
+                        <div class="profile-details">
+
+                            <h3 id="profileName">
+                                Resident
+                            </h3>
+
+                            <p id="profileEmail">
+                                resident@example.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+
+                            <span>
+                                Apartment
+                            </span>
+
+                            <strong id="infoFlat">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Phone
+                            </span>
+
+                            <strong id="infoPhone">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Resident Type
+                            </span>
+
+                            <strong id="infoType">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Account Status
+                            </span>
+
+                            <span class="status active-status">
+                                Active
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Apartment Information -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="section-label">
+                                COMMUNITY
+                            </p>
+
+                            <h2>
+                                Apartment Information
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="apartment-box">
+
+                        <div class="apartment-icon">
+                            🏢
+                        </div>
+
+                        <h3>
+                            DwellSync Apartments
+                        </h3>
+
+                        <p>
+                            Smart Apartment Community
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-row">
+
+                            <span>
+                                Flat
+                            </span>
+
+                            <strong id="apartmentFlat">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Total Flats
+                            </span>
+
+                            <strong>
+                                15
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>
+                                Flat Range
+                            </span>
+
+                            <strong>
+                                A-101 - A-115
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Recent Complaints -->
+
+            <section class="dashboard-card full-width">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            MAINTENANCE
+                        </p>
+
+                        <h2>
+                            Recent Complaints
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div id="complaintsContainer">
+
+                    <div class="empty-state">
+
+                        <div>
+                            📋
+                        </div>
+
+                        <h3>
+                            No complaints yet
+                        </h3>
+
+                        <p>
+                            Your maintenance complaints
+                            will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PROFILE SECTION
+    ========================================== -->
+
+    <section
+        id="profilePage"
+        class="page-section"
+        style="display: none;"
+    >
+
+        <!-- Navigation -->
+
+        <header class="navbar">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    DS
+                </div>
+
+                <div>
+
+                    <h2>
+                        DwellSync
+                    </h2>
+
+                    <span>
+                        Smart Community
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    href="#"
+                    onclick="showDashboard(); return false;"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="#"
+                    class="active"
+                    onclick="showProfile(); return false;"
+                >
+                    My Profile
+                </a>
+
+                <a
+                    href="#"
+                    onclick="logoutUser(); return false;"
+                >
+                    Logout
+                </a>
+
+            </nav>
+
+        </header>
+
+
+
+        <!-- Profile Content -->
+
+        <main class="profile-container">
+
+            <section class="page-heading">
+
+                <p class="section-label">
+                    ACCOUNT
+                </p>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    View and manage your personal information.
+                </p>
+
+            </section>
+
+
+
+            <section class="profile-layout">
+
+                <!-- Profile Card -->
+
+                <div class="profile-card">
+
+                    <div
+                        class="large-avatar"
+                        id="largeAvatar"
+                    >
+                        R
+                    </div>
+
+                    <h2 id="profileCardName">
+                        Resident
+                    </h2>
+
+                    <p id="profileCardEmail">
+                        resident@example.com
+                    </p>
+
+
+                    <div class="profile-status">
+
+                        <span class="status-dot"></span>
+
+                        Active Account
+
+                    </div>
+
+
+                    <div class="profile-flat">
+
+                        <span>
+                            Apartment
+                        </span>
+
+                        <strong id="profileCardFlat">
+                            A-101
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Profile Form -->
+
+                <div class="profile-form-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <p class="section-label">
+                                PERSONAL INFORMATION
+                            </p>
+
+                            <h2>
+                                Profile Details
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="editButton"
+                            class="small-button"
+                            onclick="enableProfileEdit()"
+                        >
+                            Edit Profile
+                        </button>
+
+                    </div>
+
+
+
+                    <form id="profileForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="profileNameInput">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profileNameInput"
+                                    disabled
+                                >
+
+                                <small id="nameError"></small>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="profilePhoneInput">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="profilePhoneInput"
+                                    disabled
+                                >
+
+                                <small id="phoneError"></small>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="profileEmailInput">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="profileEmailInput"
+                                    disabled
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="profileFlatInput">
+                                    Apartment / Flat
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profileFlatInput"
+                                    disabled
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="profileTypeInput">
+                                    Resident Type
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profileTypeInput"
+                                    disabled
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="profileStatusInput">
+                                    Account Status
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profileStatusInput"
+                                    value="Active"
+                                    disabled
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="form-actions"
+                            id="formActions"
+                            style="display: none;"
+                        >
+
+                            <button
+                                type="button"
+                                class="btn-secondary"
+                                onclick="cancelProfileEdit()"
+                            >
+                                Cancel
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Apartment Information -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            COMMUNITY
+                        </p>
+
+                        <h2>
+                            Apartment Information
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="apartment-information">
+
+                    <div class="apartment-info-item">
+
+                        <span class="info-icon">
+                            🏢
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Community
+                            </strong>
+
+                            <p>
+                                DwellSync Apartments
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="apartment-info-item">
+
+                        <span class="info-icon">
+                            🏠
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Flat
+                            </strong>
+
+                            <p id="apartmentInfoFlat">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="apartment-info-item">
+
+                        <span class="info-icon">
+                            👥
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Community Size
+                            </strong>
+
+                            <p>
+                                15 Flats
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+
+    <!-- Toast Notification -->
+
+    <div id="toast"></div>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
